@@ -6,7 +6,9 @@ cabal-version: 2.2
 
 name:           gpu-vulkan-khr-swapchain
 version:        0.1.0.0
+synopsis:       VK_KHR_swapchain extension of the Vulkan API
 description:    Please see the README on GitHub at <https://github.com/YoshikuniJujo/gpu-vulkan-khr-swapchain#readme>
+category:       GPU
 homepage:       https://github.com/YoshikuniJujo/gpu-vulkan-khr-swapchain#readme
 bug-reports:    https://github.com/YoshikuniJujo/gpu-vulkan-khr-swapchain/issues
 author:         Yoshikuni Jujo
@@ -25,8 +27,9 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      Gpu.Vulkan.Khr.Swapchain
   other-modules:
+      Gpu.Vulkan.Khr.Swapchain.Type
       Paths_gpu_vulkan_khr_swapchain
   autogen-modules:
       Paths_gpu_vulkan_khr_swapchain
@@ -35,20 +38,15 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
-  default-language: Haskell2010
-
-executable gpu-vulkan-khr-swapchain-exe
-  main-is: Main.hs
-  other-modules:
-      Paths_gpu_vulkan_khr_swapchain
-  autogen-modules:
-      Paths_gpu_vulkan_khr_swapchain
-  hs-source-dirs:
-      app
-  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
-  build-depends:
-      base >=4.7 && <5
-    , gpu-vulkan-khr-swapchain
+    , containers
+    , fixed-generic
+    , gpu-vulkan
+    , gpu-vulkan-khr-surface
+    , gpu-vulkan-middle-khr-swapchain
+    , hetero-parameter-list
+    , stm
+    , storable-peek-poke
+    , typelevel-tools-yj
   default-language: Haskell2010
 
 test-suite gpu-vulkan-khr-swapchain-test
@@ -63,5 +61,14 @@ test-suite gpu-vulkan-khr-swapchain-test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , containers
+    , fixed-generic
+    , gpu-vulkan
+    , gpu-vulkan-khr-surface
     , gpu-vulkan-khr-swapchain
+    , gpu-vulkan-middle-khr-swapchain
+    , hetero-parameter-list
+    , stm
+    , storable-peek-poke
+    , typelevel-tools-yj
   default-language: Haskell2010
