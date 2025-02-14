@@ -17,7 +17,7 @@ copyright:      Copyright (c) 2023 Yoshikuni Jujo
 license:        BSD-3-Clause
 license-file:   LICENSE
 build-type:     Simple
-extra-source-files:
+extra-doc-files:
     README.md
     CHANGELOG.md
 
@@ -38,15 +38,15 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
-    , containers
-    , fixed-generic
-    , gpu-vulkan
-    , gpu-vulkan-khr-surface
-    , gpu-vulkan-middle-khr-swapchain
-    , hetero-parameter-list
-    , stm
-    , storable-peek-poke
-    , typelevel-tools-yj
+    , containers <1
+    , fixed-generic <1
+    , gpu-vulkan <1
+    , gpu-vulkan-khr-surface <1
+    , gpu-vulkan-middle-khr-swapchain <1
+    , hetero-parameter-list <1
+    , stm <3
+    , storable-peek-poke <1
+    , typelevel-tools-yj <1
   default-language: Haskell2010
 
 test-suite gpu-vulkan-khr-swapchain-test
@@ -61,14 +61,14 @@ test-suite gpu-vulkan-khr-swapchain-test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
-    , containers
-    , fixed-generic
-    , gpu-vulkan
-    , gpu-vulkan-khr-surface
+    , containers <1
+    , fixed-generic <1
+    , gpu-vulkan <1
+    , gpu-vulkan-khr-surface <1
     , gpu-vulkan-khr-swapchain
-    , gpu-vulkan-middle-khr-swapchain
-    , hetero-parameter-list
-    , stm
-    , storable-peek-poke
-    , typelevel-tools-yj
+    , gpu-vulkan-middle-khr-swapchain <1
+    , hetero-parameter-list <1
+    , stm <3
+    , storable-peek-poke <1
+    , typelevel-tools-yj <1
   default-language: Haskell2010
