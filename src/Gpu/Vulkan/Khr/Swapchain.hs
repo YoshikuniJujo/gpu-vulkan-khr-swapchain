@@ -81,7 +81,7 @@ extensionName = PhysicalDevice.ExtensionName M.extensionName
 create :: (
 	WithPoked (TMaybe.M mn), T.FormatToValue fmt,
 	AllocationCallbacks.ToMiddle mac ) =>
-	Device.D sd -> CreateInfo mn ssfc fmt ->
+	Device.D sd -> CreateInfo mn ssfc fmt mosas ->
 	TPMaybe.M (U2 AllocationCallbacks.A) mac ->
 	(forall s . S fmt s -> IO a) -> IO a
 create (Device.D dvc) ci (AllocationCallbacks.toMiddle -> mac) f = bracket
@@ -91,12 +91,12 @@ create (Device.D dvc) ci (AllocationCallbacks.toMiddle -> mac) f = bracket
 unsafeRecreate :: (
 	WithPoked (TMaybe.M mn), T.FormatToValue fmt,
 	AllocationCallbacks.ToMiddle mac ) =>
-	Device.D sd -> CreateInfo mn ssfc fmt ->
+	Device.D sd -> CreateInfo mn ssfc fmt mosas ->
 	TPMaybe.M (U2 AllocationCallbacks.A) mac -> S fmt ssc -> IO ()
 unsafeRecreate (Device.D dvc) ci (AllocationCallbacks.toMiddle -> mac) (S sc) =
 	M.recreate dvc (createInfoToMiddle ci) mac sc
 
-data CreateInfo mn ssfc (fmt :: T.Format) = CreateInfo {
+data CreateInfo mn ssfc (fmt :: T.Format) mosas = CreateInfo {
 	createInfoNext :: TMaybe.M mn,
 	createInfoFlags :: CreateFlags,
 	createInfoSurface :: Surface.S ssfc,
@@ -111,12 +111,13 @@ data CreateInfo mn ssfc (fmt :: T.Format) = CreateInfo {
 	createInfoCompositeAlpha :: CompositeAlphaFlagBits,
 	createInfoPresentMode :: PresentMode,
 	createInfoClipped :: Bool,
-	createInfoOldSwapchain :: Maybe M.S }
+	createInfoOldSwapchain :: TPMaybe.M (U2 S) mosas }
 
-deriving instance Show (TMaybe.M mn) => Show (CreateInfo mn ss fmt)
+deriving instance (Show (TMaybe.M mn), Show (TPMaybe.M (U2 S) mosas)) =>
+	Show (CreateInfo mn ss fmt mosas)
 
-createInfoToMiddle :: forall n ss fmt . T.FormatToValue fmt =>
-	CreateInfo n ss fmt -> M.CreateInfo n
+createInfoToMiddle :: forall n ss fmt mosas . T.FormatToValue fmt =>
+	CreateInfo n ss fmt mosas -> M.CreateInfo n
 createInfoToMiddle CreateInfo {
 	createInfoNext = mnxt,
 	createInfoFlags = flgs,
@@ -132,7 +133,7 @@ createInfoToMiddle CreateInfo {
 	createInfoCompositeAlpha = calph,
 	createInfoPresentMode = pm,
 	createInfoClipped = clpd,
-	createInfoOldSwapchain = osc } = M.CreateInfo {
+	createInfoOldSwapchain = mosc } = M.CreateInfo {
 	M.createInfoNext = mnxt,
 	M.createInfoFlags = flgs,
 	M.createInfoSurface = sfc,
@@ -148,7 +149,8 @@ createInfoToMiddle CreateInfo {
 	M.createInfoCompositeAlpha = calph,
 	M.createInfoPresentMode = pm,
 	M.createInfoClipped = clpd,
-	M.createInfoOldSwapchain = osc }
+	M.createInfoOldSwapchain =
+		TPMaybe.maybe Nothing (\(U2 (S ms)) -> Just ms) mosc }
 
 getImages :: Device.D sd -> S fmt ss -> IO [Image.Binded ss ss nm fmt]
 getImages (Device.D d) (S sc) = (Image.Binded <$>) <$> M.getImages d sc
@@ -169,7 +171,7 @@ group dvc@(Device.D mdvc) mac@(AllocationCallbacks.toMiddle -> mmac) f = do
 create' :: (
 	T.FormatToValue fmt,
 	Ord k, WithPoked (TMaybe.M mn), AllocationCallbacks.ToMiddle ma ) =>
-	Group sd ma fmt ss k -> k -> CreateInfo mn ssfc fmt ->
+	Group sd ma fmt ss k -> k -> CreateInfo mn ssfc fmt mosas ->
 	IO (Either String (S fmt ss))
 create' (Group (Device.D mdvc)
 	(AllocationCallbacks.toMiddle -> mmac) sem ss) k

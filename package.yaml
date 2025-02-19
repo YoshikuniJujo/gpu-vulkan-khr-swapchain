@@ -1,5 +1,5 @@
 name:                gpu-vulkan-khr-swapchain
-version:             0.1.0.0
+version:             0.1.0.1
 github:              "YoshikuniJujo/gpu-vulkan-khr-swapchain"
 license:             BSD-3-Clause
 author:              "Yoshikuni Jujo"

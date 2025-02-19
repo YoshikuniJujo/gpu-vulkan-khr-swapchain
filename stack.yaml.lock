@@ -5,12 +5,12 @@
 
 packages:
 - completed:
-    hackage: gpu-vulkan-0.1.0.169@sha256:ea38002d03b78499cb3b93ae45db3e2eaec0874f30786e10a3ad77c8b9ec6e87,8054
+    hackage: gpu-vulkan-0.1.0.170@sha256:06d3b19697ee5d29c10c4c1901ad8ab6b9a09e2dce992ba31238cad95dc069cf,8054
     pantry-tree:
-      sha256: fdf7ea235e9a189c56a47e810d190bc03a6093e9811e2cc5f23bbdb7e77ade2a
+      sha256: 1368e69ac8a679f6c427354df79671f3fbf7423391cf252de442de80addff65d
       size: 12064
   original:
-    hackage: gpu-vulkan-0.1.0.169
+    hackage: gpu-vulkan-0.1.0.170
 - completed:
     hackage: gpu-vulkan-khr-surface-0.1.0.0@sha256:789237cd35f877c94be45b163624106f4df4d62a0577da211daaa880fd98515d,2333
     pantry-tree:
@@ -19,12 +19,12 @@ packages:
   original:
     hackage: gpu-vulkan-khr-surface-0.1.0.0
 - completed:
-    hackage: gpu-vulkan-middle-0.1.0.74@sha256:ef19ae89eb542e2905395b47cad930156faf010cb83739a856543b9c958bf750,9124
+    hackage: gpu-vulkan-middle-0.1.0.75@sha256:eea5220f6696b9d35a74a0959cd7987d6879dc558a7697af888236f979df2231,9124
     pantry-tree:
-      sha256: 40a266489b01c5a75cb98320961383fbdbf6b0bc0e901c95ba4fff4253c3cb31
+      sha256: 5b163da48b756a822a132b550a204f8a37f65b96b003e98c2e3a1017e523f50d
       size: 13576
   original:
-    hackage: gpu-vulkan-middle-0.1.0.74
+    hackage: gpu-vulkan-middle-0.1.0.75
 - completed:
     hackage: gpu-vulkan-middle-khr-swapchain-0.1.0.0@sha256:a15bb45401cfe86eda6d6c9086dbc7aa65c1049a4c32ab7cbf340f2a74db8a8f,2569
     pantry-tree:
@@ -69,7 +69,7 @@ packages:
     hackage: language-spir-v-0.1.0.3
 snapshots:
 - completed:
-    sha256: 78147d3761fd88456232717ec93c834ffb6dc9061e4d1b0e4600b1b8a44cee92
-    size: 653398
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2025/2/14.yaml
-  original: nightly-2025-02-14
+    sha256: f7bac574f1ba8b0e4dc6d6d842e59c6da626b979b1d063eae8e1602cb20d18e7
+    size: 654474
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2025/2/19.yaml
+  original: nightly-2025-02-19
