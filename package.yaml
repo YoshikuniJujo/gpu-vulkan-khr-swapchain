@@ -46,6 +46,7 @@ library:
   source-dirs: src
   exposed-modules:
     - Gpu.Vulkan.Khr.Swapchain
+    - Gpu.Vulkan.Khr.Swapchain.Type
 
 tests:
   gpu-vulkan-khr-swapchain-test:
